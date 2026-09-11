@@ -55,17 +55,17 @@ This connector supports the following entities and actions. For more details, se
 | Entity | Actions |
 |--------|---------|
 | Accounts | [Get](./REFERENCE.md#accounts-get) |
-| Agents | [List](./REFERENCE.md#agents-list), [Get](./REFERENCE.md#agents-get), [Context Store Search](./REFERENCE.md#agents-context-store-search) |
+| Agents | [List](./REFERENCE.md#agents-list), [Get](./REFERENCE.md#agents-get), [Context Store Search](./REFERENCE.md#agents-context-store-search), [Context Store SQL Query](./REFERENCE.md#agents-context-store-sql-query) |
 | Agent Timeline | [List](./REFERENCE.md#agent-timeline-list) |
 | Bans | [List](./REFERENCE.md#bans-list), [Get](./REFERENCE.md#bans-get) |
-| Chats | [List](./REFERENCE.md#chats-list), [Get](./REFERENCE.md#chats-get), [Context Store Search](./REFERENCE.md#chats-context-store-search) |
-| Departments | [List](./REFERENCE.md#departments-list), [Get](./REFERENCE.md#departments-get), [Context Store Search](./REFERENCE.md#departments-context-store-search) |
+| Chats | [List](./REFERENCE.md#chats-list), [Get](./REFERENCE.md#chats-get), [Context Store Search](./REFERENCE.md#chats-context-store-search), [Context Store SQL Query](./REFERENCE.md#chats-context-store-sql-query) |
+| Departments | [List](./REFERENCE.md#departments-list), [Get](./REFERENCE.md#departments-get), [Context Store Search](./REFERENCE.md#departments-context-store-search), [Context Store SQL Query](./REFERENCE.md#departments-context-store-sql-query) |
 | Goals | [List](./REFERENCE.md#goals-list), [Get](./REFERENCE.md#goals-get) |
 | Roles | [List](./REFERENCE.md#roles-list), [Get](./REFERENCE.md#roles-get) |
 | Routing Settings | [Get](./REFERENCE.md#routing-settings-get) |
-| Shortcuts | [List](./REFERENCE.md#shortcuts-list), [Get](./REFERENCE.md#shortcuts-get), [Context Store Search](./REFERENCE.md#shortcuts-context-store-search) |
+| Shortcuts | [List](./REFERENCE.md#shortcuts-list), [Get](./REFERENCE.md#shortcuts-get), [Context Store Search](./REFERENCE.md#shortcuts-context-store-search), [Context Store SQL Query](./REFERENCE.md#shortcuts-context-store-sql-query) |
 | Skills | [List](./REFERENCE.md#skills-list), [Get](./REFERENCE.md#skills-get) |
-| Triggers | [List](./REFERENCE.md#triggers-list), [Context Store Search](./REFERENCE.md#triggers-context-store-search) |
+| Triggers | [List](./REFERENCE.md#triggers-list), [Context Store Search](./REFERENCE.md#triggers-context-store-search), [Context Store SQL Query](./REFERENCE.md#triggers-context-store-sql-query) |
 
 
 ## Zendesk-Chat API docs
@@ -414,7 +414,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 tools = build_connector_tools(connector, framework="pydantic_ai")
@@ -432,7 +433,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 tools = build_connector_tools(connector, framework="langchain")
@@ -457,7 +459,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 tools = build_connector_tools(connector, framework="openai_agents")
@@ -477,7 +480,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 mcp = FastMCP("Zendesk-Chat Agent")
@@ -500,7 +504,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 agent = Agent("openai:gpt-4o")
@@ -521,7 +526,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 @tool
@@ -543,7 +549,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 # strict_mode=False because `params: dict` is permissive and the default strict
@@ -568,7 +575,8 @@ from airbyte_agent_sdk.connectors.zendesk_chat.models import ZendeskChatAuthConf
 connector = ZendeskChatConnector(
     auth_config=ZendeskChatAuthConfig(
         access_token="<Your Zendesk Chat OAuth 2.0 access token>"
-    )
+    ),
+    subdomain="<Your Zendesk subdomain (the part before .zendesk.com in your Zendesk URL)>"
 )
 
 mcp = FastMCP("Zendesk-Chat Agent")

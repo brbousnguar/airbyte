@@ -42,18 +42,18 @@ This connector supports the following entities and actions. For more details, se
 
 | Entity | Actions |
 |--------|---------|
-| Campaigns | [List](./REFERENCE.md#campaigns-list), [Get](./REFERENCE.md#campaigns-get), [Context Store Search](./REFERENCE.md#campaigns-context-store-search) |
-| Lists | [List](./REFERENCE.md#lists-list), [Get](./REFERENCE.md#lists-get), [Context Store Search](./REFERENCE.md#lists-context-store-search) |
-| List Members | [List](./REFERENCE.md#list-members-list), [Get](./REFERENCE.md#list-members-get), [Context Store Search](./REFERENCE.md#list-members-context-store-search) |
-| Reports | [List](./REFERENCE.md#reports-list), [Get](./REFERENCE.md#reports-get), [Context Store Search](./REFERENCE.md#reports-context-store-search) |
-| Email Activity | [List](./REFERENCE.md#email-activity-list), [Context Store Search](./REFERENCE.md#email-activity-context-store-search) |
-| Automations | [List](./REFERENCE.md#automations-list), [Context Store Search](./REFERENCE.md#automations-context-store-search) |
-| Tags | [List](./REFERENCE.md#tags-list), [Context Store Search](./REFERENCE.md#tags-context-store-search) |
-| Interest Categories | [List](./REFERENCE.md#interest-categories-list), [Get](./REFERENCE.md#interest-categories-get), [Context Store Search](./REFERENCE.md#interest-categories-context-store-search) |
-| Interests | [List](./REFERENCE.md#interests-list), [Get](./REFERENCE.md#interests-get), [Context Store Search](./REFERENCE.md#interests-context-store-search) |
-| Segments | [List](./REFERENCE.md#segments-list), [Get](./REFERENCE.md#segments-get), [Context Store Search](./REFERENCE.md#segments-context-store-search) |
-| Segment Members | [List](./REFERENCE.md#segment-members-list), [Context Store Search](./REFERENCE.md#segment-members-context-store-search) |
-| Unsubscribes | [List](./REFERENCE.md#unsubscribes-list), [Context Store Search](./REFERENCE.md#unsubscribes-context-store-search) |
+| Campaigns | [List](./REFERENCE.md#campaigns-list), [Get](./REFERENCE.md#campaigns-get), [Context Store Search](./REFERENCE.md#campaigns-context-store-search), [Context Store SQL Query](./REFERENCE.md#campaigns-context-store-sql-query) |
+| Lists | [List](./REFERENCE.md#lists-list), [Get](./REFERENCE.md#lists-get), [Context Store Search](./REFERENCE.md#lists-context-store-search), [Context Store SQL Query](./REFERENCE.md#lists-context-store-sql-query) |
+| List Members | [List](./REFERENCE.md#list-members-list), [Get](./REFERENCE.md#list-members-get), [Context Store Search](./REFERENCE.md#list-members-context-store-search), [Context Store SQL Query](./REFERENCE.md#list-members-context-store-sql-query) |
+| Reports | [List](./REFERENCE.md#reports-list), [Get](./REFERENCE.md#reports-get), [Context Store Search](./REFERENCE.md#reports-context-store-search), [Context Store SQL Query](./REFERENCE.md#reports-context-store-sql-query) |
+| Email Activity | [List](./REFERENCE.md#email-activity-list), [Context Store Search](./REFERENCE.md#email-activity-context-store-search), [Context Store SQL Query](./REFERENCE.md#email-activity-context-store-sql-query) |
+| Automations | [List](./REFERENCE.md#automations-list), [Context Store Search](./REFERENCE.md#automations-context-store-search), [Context Store SQL Query](./REFERENCE.md#automations-context-store-sql-query) |
+| Tags | [List](./REFERENCE.md#tags-list), [Context Store Search](./REFERENCE.md#tags-context-store-search), [Context Store SQL Query](./REFERENCE.md#tags-context-store-sql-query) |
+| Interest Categories | [List](./REFERENCE.md#interest-categories-list), [Get](./REFERENCE.md#interest-categories-get), [Context Store Search](./REFERENCE.md#interest-categories-context-store-search), [Context Store SQL Query](./REFERENCE.md#interest-categories-context-store-sql-query) |
+| Interests | [List](./REFERENCE.md#interests-list), [Get](./REFERENCE.md#interests-get), [Context Store Search](./REFERENCE.md#interests-context-store-search), [Context Store SQL Query](./REFERENCE.md#interests-context-store-sql-query) |
+| Segments | [List](./REFERENCE.md#segments-list), [Get](./REFERENCE.md#segments-get), [Context Store Search](./REFERENCE.md#segments-context-store-search), [Context Store SQL Query](./REFERENCE.md#segments-context-store-sql-query) |
+| Segment Members | [List](./REFERENCE.md#segment-members-list), [Context Store Search](./REFERENCE.md#segment-members-context-store-search), [Context Store SQL Query](./REFERENCE.md#segment-members-context-store-sql-query) |
+| Unsubscribes | [List](./REFERENCE.md#unsubscribes-list), [Context Store Search](./REFERENCE.md#unsubscribes-context-store-search), [Context Store SQL Query](./REFERENCE.md#unsubscribes-context-store-sql-query) |
 
 
 ## Mailchimp API docs
@@ -402,7 +402,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 tools = build_connector_tools(connector, framework="pydantic_ai")
@@ -420,7 +421,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 tools = build_connector_tools(connector, framework="langchain")
@@ -445,7 +447,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 tools = build_connector_tools(connector, framework="openai_agents")
@@ -465,7 +468,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 mcp = FastMCP("Mailchimp Agent")
@@ -488,7 +492,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 agent = Agent("openai:gpt-4o")
@@ -509,7 +514,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 @tool
@@ -531,7 +537,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 # strict_mode=False because `params: dict` is permissive and the default strict
@@ -556,7 +563,8 @@ from airbyte_agent_sdk.connectors.mailchimp.models import MailchimpAuthConfig
 connector = MailchimpConnector(
     auth_config=MailchimpAuthConfig(
         api_key="<Your Mailchimp API key. You can find this in your Mailchimp account under Account > Extras > API keys.>"
-    )
+    ),
+    data_center="<The data center for your Mailchimp account (e.g., us1, us2, us6)>"
 )
 
 mcp = FastMCP("Mailchimp Agent")
